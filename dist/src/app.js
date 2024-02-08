@@ -13,3 +13,7 @@ app.use((0, cors_1.default)());
 app.use(express_1.default.json({ limit: constants_1.limitToUpload }));
 app.use(express_1.default.urlencoded({ extended: true, limit: constants_1.limitToUpload }));
 app.use(express_1.default.static('public'));
+//import routes
+const index_1 = __importDefault(require("./routes/user/index"));
+//route declaration
+app.use("/api/v1/users", index_1.default);

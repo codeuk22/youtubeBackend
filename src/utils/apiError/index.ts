@@ -2,7 +2,7 @@ export class ApiError extends Error {
 
     [x: string]: any
 
-    constructor(statusCode: any, message = "Something went wrong", errors = [], stack: string | undefined) {
+    constructor(statusCode: any, message = "Something went wrong", errors = [], stack="") {
 
         super(message)
 
