@@ -1,11 +1,18 @@
 import { Router } from "express";
-import { registerUser } from "../../controllers/user/index";
+import { logoutUser, registerUser, userLogin } from "../../controllers/user/index";
 import { upload } from "../../middlewares/multer/index";
-import { validateUserRegister } from "../../middlewares/joiValidation/index";
+import { validateUserLogin, validateUserRegister } from "../../middlewares/joiValidation/index";
+import { verifyJWT } from "../../middlewares/jwtValidation";
 
 const router = Router();
 
 router.post("/register",validateUserRegister,upload.fields([{ name: "avatar", maxCount: 1 }, { name: "coverImage", maxCount: 1 }]),registerUser)
+router.post("/login",validateUserLogin,userLogin)
+
+
+
+// protected routes
+router.post("/logout",verifyJWT,logoutUser)
 
 
 export default router

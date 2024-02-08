@@ -64,7 +64,7 @@ export const registerUser = async (req: Request, res: Response) => {
     }
 }
 
-export const useLogin = async (req: Request, res: Response) => {
+export const userLogin = async (req: Request, res: Response) => {
 
     const findUser = await userModel.findOne({ $or: [{ email: req.body.email }, { username: req.body.username }] })
 
@@ -84,6 +84,20 @@ export const useLogin = async (req: Request, res: Response) => {
     }
 
     return res.status(200).cookie("accessToken", accessToken, options).cookie("refreshToken", refreshToken, options).send(
-        new ApiResponse(200, {user:updatedUser}, "User LoggedIn Successfully")
+        new ApiResponse(200, { user: updatedUser }, "User LoggedIn Successfully")
     )
+}
+
+export const logoutUser = async (req: any, res: Response) => {
+
+    const userId = req.user._id
+
+    const user = await userModel.findByIdAndUpdate(userId, { $set: { refreshToken: "" } }, { new: true })
+
+    const options = {
+        httpOnly: true,
+        secure: true
+    }
+
+    return res.status(200).clearCookie("accessToken", options).clearCookie("refreshToken", options).json(new ApiResponse(200, {}, "User LoggedOut Successfully"))
 }
