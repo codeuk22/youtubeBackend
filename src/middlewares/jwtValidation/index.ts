@@ -14,7 +14,5 @@ export const verifyJWT= async (req:Request,res:Response,next:NextFunction)=>{
 
     if(!user) throw new ApiError(401,"Invalid Token")
 
-    
-
     next()
 }
