@@ -10,6 +10,7 @@ const userRegisterSchema = joi_1.default.object({
     fullName: joi_1.default.string().required().trim(),
     email: joi_1.default.string().email().required().trim(),
     password: joi_1.default.string().required(),
+    confirmPassword: joi_1.default.string().valid(joi_1.default.ref("password")).required(),
     avatar: joi_1.default.string(),
     coverImage: joi_1.default.string(),
 });

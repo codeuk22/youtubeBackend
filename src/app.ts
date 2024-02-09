@@ -1,7 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import { limitToUpload } from './constants';
-
+import cookieParser from 'cookie-parser';
 const app = express();
 
 app.use(cors())
@@ -25,7 +25,4 @@ app.use("/api/v1/users",router)
 
 export { app }
 
-function cookieParser(): any {
-    throw new Error('Function not implemented.');
-}
 

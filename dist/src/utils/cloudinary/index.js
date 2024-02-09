@@ -12,6 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.uploadOnCloudinary = void 0;
 const cloudinary_1 = require("cloudinary");
 const fs_1 = __importDefault(require("fs"));
 cloudinary_1.v2.config({
@@ -35,4 +36,4 @@ const uploadOnCloudinary = (filePath) => __awaiter(void 0, void 0, void 0, funct
         return null;
     }
 });
-cloudinary_1.v2.uploader.upload("https://upload.wikimedia.org/wikipedia/commons/a/ae/Olympic_flag.jpg", { public_id: "olympic_flag" }, function (error, result) { console.log(result); });
+exports.uploadOnCloudinary = uploadOnCloudinary;
